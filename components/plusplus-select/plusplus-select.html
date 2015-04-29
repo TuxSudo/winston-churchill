@@ -1,9 +1,10 @@
+<script src="../../dist/winston-churchill.js"></script>
+
 <template id="plusplus-select">
 
     <style>
 
         :host {
-            background-color: green;
             display: block;
             opacity: 1;
         }
@@ -12,15 +13,24 @@
             opacity: 0;
         }
 
-        :host content {
+        ::content > * {
             display: none;
+        }
+
+        :host([open]) ::content > * {
+            display: block;
+        }
+
+        ::content #option2 {
+            display: block;
         }
 
     </style>
 
-    <!-- <input name="{{ name }}" value=""> --> 
-    
-    <content></content>
+
+    <div class="wrapper">
+        <content></content>
+    </div>
     
 
     

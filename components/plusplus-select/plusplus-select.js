@@ -1,26 +1,16 @@
-( function () {
-    var queryImport = (function () {
-            var doc = document.currentScript.ownerDocument;
-            return function (sel) {
-                return doc.querySelector(sel);
-            };
-        })(),
-        PlusPlusSelect = WC.register( 'plusplus-select' );
+var WCSelect = WC.register('plusplus-select');
 
-    PlusPlusSelect.prototype.on( 'created', function () {
-        this.template = queryImport('template');
-    } );
 
-    PlusPlusSelect.prototype.on( 'attached', function () {
-        console.log('attached');
-        
+WCSelect.prototype.on( 'attached', function () {
+    var select = this;
+
+    select.addEventListener('click', function() {
+        return select.hasAttribute('open') ? select.removeAttribute('open') : select.setAttribute('open', 1);
     });
 
-    PlusPlusSelect.prototype.on('data', function (data) {
-        this.render(this.templateFragment, data);
-    });
+});
 
-    PlusPlusSelect.prototype.on( 'detached', function () {
-        window.clearInterval( interval );
-    });
-} )();
+WCSelect.prototype.on('created', function () {
+    this.data = {};
+});
+
